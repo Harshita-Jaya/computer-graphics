@@ -1,0 +1,73 @@
+#include<graphics.h>
+#include<math.h>
+#define rou(a) (int)(a+0.5)
+#define PI 3.141
+int xmid,ymid;
+
+double calx(int x, int y, int xp,int yp, double a){
+	return (xp+(x-xp)*cos((PI/180)*a)-(y-yp)*sin((PI/180)*a));
+}
+
+
+double caly(int x, int y, int xp,int yp, double a){
+	return (yp+(x-xp)*sin((PI/180)*a)+(y-yp)*cos((PI/180)*a));
+}
+
+
+void rotate(int x1,int y1,int x2,int y2,int x3,int y3,int xp,int yp,double a)
+{
+	double x11,x22,x33,y11,y22,y33;
+	x11=calx(x1, y1, xp, yp, a);
+	y11=caly(x1, y1, xp, yp, a);
+	x22=calx(x2, y2, xp, yp, a);
+	y22=caly(x2, y2, xp, yp, a);
+	x33=calx(x3, y3, xp, yp, a);
+	y33=caly(x3, y3, xp, yp, a);
+	setcolor(YELLOW);
+	display(x11,y11,x22,y22,x33,y33);
+}
+
+void display(int x1, int y1, int x2, int y2, int x3, int y3){
+	line(xmid+rou(x1),ymid-rou(y1),xmid+rou(x2),ymid-rou(y2));
+	line(xmid+rou(x2),ymid-rou(y2),xmid+rou(x3),ymid-rou(y3));
+	line(xmid+rou(x3),ymid-rou(y3),xmid+rou(x1),ymid-rou(y1));
+}
+void scale(int x1,int y1,int x2,int y2,int x3,int y3,int xp,int yp,double sx,double sy)
+{
+	double x11,x22,x33,y11,y22,y33;
+	x11=x1*sx+xp*(1-sx);
+	y11=y1*sy+yp*(1-sy);
+	x22=x2*sx+xp*(1-sx);
+	y22=y2*sy+yp*(1-sy);
+	x33=x3*sx+xp*(1-sx);
+	y33=y3*sy+yp*(1-sy);
+	setcolor(BLUE);
+	display(x11,y11,x22,y22,x33,y33);
+}
+void main()
+{
+	int gdriver=DETECT,gmode,x1,y1,x2,y2,x3,y3,xp,yp;
+	double theta,sx,sy;
+	initgraph(&gdriver,&gmode,"c:\\tc\\bgi");
+	printf("Enter x1, y1, x2, y2, x3, y3 for triangle: ");
+	scanf("%d%d%d%d%d%d", %x1, &y1, &x2, &y2, &x3, &y3);
+	printf("Enter (xp,yp) : ");
+	scanf("%d%d",&xp,&yp);
+	printf("Enter (sx,sy) : ");
+	scanf("%lf%lf",&sx,&sy);
+	printf("Enter angle of rotation : ");
+	scanf("%lf",&theta);
+	xmid=getmaxx()/2;
+	ymid=getmaxy()/2;
+	line(0,ymid,getmaxx(),ymid);
+	line(xmid,0,xmid,getmaxy());
+	
+	putpixel(xmid+xp, ymid - yp, RED);
+	
+	display(x1,y1, x2, y2, x3, y3);
+	
+	rotate(x1,y1,x2,y2,x3,y3,xp,yp,theta);
+	scale(x1,y1,x2,y2,x3,y3,xp,yp,sx,sy);
+	getch();
+	closegraph();
+}

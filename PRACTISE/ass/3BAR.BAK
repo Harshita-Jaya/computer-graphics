@@ -1,0 +1,42 @@
+// DRAW A BAR CHART HAVING ATLEAST THREE BARS
+
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+
+
+void main() {
+	int gdriver = DETECT, gmode;
+
+
+
+	initgraph(&gdriver, &gmode, "C:\\TC\\BGI");
+	
+	// not mine
+	line(100, 420, 100, 60);		// x axis
+	line(100, 420, 500, 4200);		// y axis
+	
+	setfillstyle(SOLID_FILL,RED);
+	bar(150,200,200,410);
+	setfillstyle(SOLID_FILL,YELLOW);
+	bar(220,80,270,410);
+	setfillstyle(SOLID_FILL,dGREEN);
+	bar(800,120,350,410);
+
+
+/*
+	// axes of the graph
+	line(140, 400, 490, 400);		// x axis
+	line(140, 400, 140, 100);		// y axis
+	
+	setfillstyle(SOLID_FILL,RED);
+	rectangle(190,180,240,400);
+	setfillstyle(SOLID_FILL,YELLOW);
+	rectangle(290,310,340,400);
+	setfillstyle(SOLID_FILL,dGREEN);
+	rectangle(390,220,440,400);
+*/	
+	getch();
+	closegraph();
+}

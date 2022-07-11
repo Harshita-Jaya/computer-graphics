@@ -1,0 +1,33 @@
+#include<stdlib.h>
+#include<graphics.h>
+#include<stdio.h>
+#include<conio.h>
+
+int main(){
+
+	int gd = DETECT, gm;
+	int i;
+	int x, y, r = 200;
+	initgraph(&gd, &gm, "C:\\TC\\BGI");
+	x = getmaxx()/2;
+	y = getmaxy()/2;
+
+	// clock circle
+	circle(x, y, r);
+	// mid point
+	circle(x,y,1);
+	// clock labels
+	line(x+200, y, x+190, y);
+	outtextxy(x+180, y-2, "3");
+	line(x-200, y, x-190, y);
+	outtextxy(x-180, y-2, "9");
+	line(x, y+200, x, y+190);
+	outtextxy(x-2, y+180, "6");
+	line(x, y-200, x, y-190);
+	outtextxy(x-2, y-180, "12");
+
+	getch();
+	closegraph();
+	return 1;
+
+}

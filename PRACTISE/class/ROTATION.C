@@ -1,0 +1,54 @@
+/* this program is for rotation */
+
+#define pi 3.141
+#define round(a) (int)(a+0.5)
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include<math.h>
+int xmid, ymid;
+void rotation(int, int,int, int, float);
+int main(void)
+{
+   int gdriver = DETECT, gmode;
+   int xs, ys, xe,ye;
+   float angle;
+
+
+   initgraph(&gdriver, &gmode, "C:\\TC\\BGI");
+
+   xmid = getmaxx()/2;
+   ymid = getmaxy()/2;
+
+   // coordinate axes
+   line(0, ymid,getmaxx(), ymid);
+   line(xmid, 0, xmid,getmaxy());
+
+	printf("Enter x1, y1, x2, y2\n");
+	scanf("%d%d%d%d", &xs, &ys, &xe, &ye);
+	printf("Enter angle of rotation\n");
+	scanf("%f", &angle);
+	// original line
+	line(xmid+xs, ymid-ys, xmid+xe, ymid-ye);
+
+	// function for rotation
+	rotation(xs, ys, xe, ye, angle);
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+
+void rotation(int x1, int y1, int x2, int y2, float theta){
+	float x11, y11, x22, y22; // end points of rotation line
+	float radian = (pi/180)*theta;
+	x11 = x1*cos((pi/180)*theta)-y1*sin((pi/180)*theta);
+	y11 = x1*sin(radian)+y1*cos(radian);
+	x22 = x2*cos(radian)-y2*sin(radian);
+	y22 = x2*sin(radian)+y2*cos(radian);
+	setcolor(YELLOW);
+	line(xmid+round(x11), ymid-round(y11), xmid+round(x22), ymid-round(y22));
+	
+}
+

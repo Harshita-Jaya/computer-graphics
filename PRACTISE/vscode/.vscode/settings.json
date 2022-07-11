@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "1HUT.C": "cpp",
+        "2BOUNCE.C": "cpp",
+        "3BAR.C": "cpp",
+        "4BOR_CIR.C": "cpp",
+        "5CAR.C": "cpp",
+        "6MENU.C": "cpp",
+        "7SLOPE.C": "cpp",
+        "8DDA_LINE.C": "cpp",
+        "11POLAR_CIR.C": "cpp",
+        "10POLY_CIR.C": "cpp"
+    }
+}

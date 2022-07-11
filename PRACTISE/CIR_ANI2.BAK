@@ -1,0 +1,58 @@
+#include<graphics.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<conio.h>
+
+int main(void){
+	int gd = DETECT, gmode, errorcode;
+	int x, y, xmin = 30, ymin = 20, xmax = 560, ymax = 460, r = 20;
+	initgraph(&gd, &gmode, "C:\\TC\\BGI");
+
+	 errorcode = graphresult();
+   /* an error occurred */
+   if (errorcode != grOk)
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);
+   }
+
+	setcolor(getmaxcolor());
+	while(!kbhit()){
+		for(x=xmin, y = ymin; x<xmax ; x+=10){
+			if(kbhit())	exit(1);
+			circle(x, y, r);
+			delay(10);
+      //			cleardevice();
+		}
+		for(; y<ymax ; y+=10){
+			if(kbhit())	exit(1);
+			circle(x, y, r);
+			delay(10);
+    //			cleardevice();
+		}
+		for(; x>xmin ; x-=10){
+			if(kbhit())	exit(1);
+			circle(x, y, r);
+			delay(10);
+  //			cleardevice();
+		}
+		for(x = xmin, y = ymax; y>ymin ; y-=10){
+			if(kbhit())	exit(1);
+			circle(x, y, r);
+			delay(10);
+//			cleardevice();
+		}
+		x +=20; y+=20; xmin +=20; ymin+=20;
+		xmax-=20; ymax-=20;
+		if(xd == getmaxx()/2+40){
+		exit(1);
+		}
+	}
+
+	getch();
+	closegraph();
+	return 0;
+}
+

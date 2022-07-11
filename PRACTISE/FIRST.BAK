@@ -1,0 +1,39 @@
+
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+
+int main(void)
+{
+   /* request auto detection */
+   int gdriver = DETECT, gmode, errorcode;
+   int xmax, ymax;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "C:\\TC\\BGI");
+   // not necessary, but for error handling
+   /* read result of initialization */
+   errorcode = graphresult();
+   /* an error occurred */
+   if (errorcode != grOk)
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);
+   }
+
+   setcolor(getmaxcolor());
+   xmax = getmaxx();  //max  640px          initial coor (0,0)
+   ymax = getmaxy();   // max  480px        max coor(639,479)
+   printf("xmax = %d and ymax = %d", xmax, ymax);
+   /*draw a diagonal line */
+   line(0, 0, xmax, ymax);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+

@@ -1,0 +1,33 @@
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+
+
+int main() {
+	// auto detect
+	int gdriver = DETECT, gmode, errorcode;
+	int xmax, ymax;
+	
+	
+	initgraph(&gdriver, &gmode, "C:\\TC\\BGI");
+	
+	errorcode = graphresult();
+	
+	if(errorcode != grOk){
+		printf("Error: %s\n");
+		printf("Press any key to halt");
+		getch();
+		exit(1);
+	}
+	
+	setcolor(getmaxcolor());
+	xmax = getmaxx();
+	ymax = getmaxy();
+	
+	line(0,0,xmax,ymax);
+	
+	getch();
+	closegraph();
+	return 0;
+}

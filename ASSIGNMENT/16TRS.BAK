@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<graphics.h>
+int nx1,nx2,nx3,ny1,ny2,ny3;
+void translation(int,int,int,int,int,int,int,int);
+void rotation(int,int,int,int,int,int,int);
+void scaling(int,int,int,int,int,int,int,int);
+void main()
+{
+  int gdriver = DETECT,gmode,x1,x2,x3,y1,y2,y3,c,sx,sy,xt,yt,r;
+  initgraph(&gdriver,&gmode,"C:\\TURBOC3\\BGI");
+  printf("Enter the points of triangle:\n");
+  scanf("%d%d%d%d%d%d",&x1,&y1,&x2,&y2,&x3,&y3);
+  line(x1,y1,x2,y2);
+  line(x2,y2,x3,y3);
+  line(x3,y3,x1,y1);
+  getch();
+  printf("1.Translation\n2.Rotation\n3.Scaling\n4.Exit\n");
+  printf("Enter your choice:\n");
+  scanf("%d",&c);
+  switch(c)
+  {
+    case 1:printf("\nEnter the translation factor:\n");
+	   scanf("%d%d",&xt,&yt);
+	   setcolor(RED);
+	   translation(x1,y1,x2,y2,x3,y3,xt,yt);
+	   getch();
+    case 2:printf("\nEnter the angle of rotation:\n");
+	   scanf("%d",&r);
+	   setcolor(BLUE);
+	   rotation(x1,y1,x2,y2,x3,y3,r);
+	   getch();
+    case 3:printf("\nEnter the scaling factor:\n");
+	   scanf("%d%d",&sx,&sy);
+	   setcolor(GREEN);
+	   scaling(x1,y1,x2,y2,x3,y3,sx,sy);
+	   getch();
+    case 4:break;
+  }
+  closegraph();
+}
+void translation(int x1,int y1,int x2,int y2,int x3,int y3,int xt,int yt)
+{
+  nx1=x1+xt;
+  ny1=y1+yt;
+  nx2=x2+xt;
+  ny2=y2+yt;
+  nx3=x3+xt;
+  ny3=y3+yt;
+  line(nx1,ny1,nx2,ny2);
+  line(nx2,ny2,nx3,ny3);
+  line(nx3,ny3,nx1,ny1);
+}
+void rotation(int x1,int y1,int x2,int y2,int x3,int y3,int r)
+{
+  float t;
+  int p=x2,q=y2;
+  t=(3.14*r)/180;
+  nx1=p+(x1-p)*cos(t)-(y1-q)*sin(t);
+  ny1=q+(x1-p)*sin(t)+(y1-q)*cos(t);
+  nx2=p+(x2-p)*cos(t)-(y2-q)*sin(t);
+  ny2=q+(x2-p)*sin(t)+(y2-q)*cos(t);
+  nx3=p+(x3-p)*cos(t)-(y3-q)*sin(t);
+  ny3=q+(x3-p)*sin(t)+(y3-q)*cos(t);
+  line(nx1,ny1,nx2,ny2);
+  line(nx2,ny2,nx3,ny3);
+  line(nx3,ny3,nx1,ny1);
+}
+void scaling(int x1,int y1,int x2,int y2,int x3,int y3,int sx,int sy)
+{
+  nx1=x1*sx;
+  ny1=y1*sy;
+  nx2=x2*sx;
+  ny2=y2*sy;
+  nx3=x3*sx;
+  ny3=y3*sy;
+  line(nx1,ny1,nx2,ny2);
+  line(nx2,ny2,nx3,ny3);
+  line(nx3,ny3,nx1,ny1);
+}
+
+

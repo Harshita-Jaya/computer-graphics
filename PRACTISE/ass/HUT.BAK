@@ -1,0 +1,22 @@
+#include<graphics.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<conio.h>
+
+int main(){
+	int gd = DETECT, gmode;
+	int x, y, xmid, ymid;
+	initgraph(&gd, &gmode, "C:\\TC\\BGI");
+	xmid = getmaxx()/2;
+	ymid = getmaxy()/2;
+
+	line(xmid-150, ymid +150, xmid -150, ymid-150);
+	line(xmid+150, ymid +150, xmid +150, ymid-150);
+	line(xmid-150, ymid +150, xmid +150, ymid+150);
+	line(xmid-150, ymid -150, xmid +150, ymid-150);
+//	line(xmid-150, ymid +150, xmid -150, ymid-150);
+	getch();
+	closegraph();
+	return 1;
+
+}

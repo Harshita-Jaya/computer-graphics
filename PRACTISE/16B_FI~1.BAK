@@ -1,0 +1,61 @@
+
+//16.	Write a C program to implement Boundary Fill Algorithm to fill a circle without using recursion.
+#include <stdio.h>
+#include <conio.h> 
+#include <graphics.h> 
+#include <dos.h>
+void bfill(int x,int y,int f_col,int b_col)
+{
+	int xmove=x,ymove=y; 
+	while(getpixel(xmove,ymove)!=b_col)
+	{
+		//filling upwards 
+		while(getpixel(xmove,ymove)!=b_col)
+		{
+			putpixel(xmove,ymove,f_col); 
+			ymove--;
+		}
+		ymove=y;
+		//filling downwards 
+		while(getpixel(xmove,ymove)!=b_col)
+		{
+			putpixel(xmove,ymove,f_col); 
+			ymove++;
+		}
+		ymove=y; 
+		xmove--;
+	}
+	xmove=x; 
+	while(getpixel(xmove,ymove)!=b_col)
+	{
+		//filling upwards 
+		while(getpixel(xmove,ymove)!=b_col)
+		{
+			putpixel(xmove,ymove,f_col); 
+			ymove--;
+		}
+		ymove=y;
+		//filling downwards 
+		while(getpixel(xmove,ymove)!=b_col)
+		{
+			putpixel(xmove,ymove,f_col); 
+			ymove++;
+		}
+		ymove=y; 
+		xmove++;
+	}
+}
+int main()
+{
+	int xc,yc,r;
+	int gdriver = DETECT,gmode; 
+	initgraph(&gdriver,&gmode,"C:\\TC\\BGI"); 
+/* 	printf("Enter co-ordinates of the centre: "); 
+	scanf("%d%d",&xc,&yc);
+	printf("Enter radius of circle: "); 
+	scanf("%d",&r);  */
+    xc = 200; yc = 200; r = 100;
+	circle(xc,yc,r); 
+	bfill(xc,yc,RED,WHITE); 
+	getch();
+}

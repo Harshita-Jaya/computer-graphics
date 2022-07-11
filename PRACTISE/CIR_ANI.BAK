@@ -1,0 +1,41 @@
+#include<graphics.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<conio.h>
+
+int main(){
+	int gd = DETECT, gmode;
+	int x, y, xmin = 30, ymin = 20, xmax = 560, ymax = 460, r = 20;
+	initgraph(&gd, &gmode, "C:\\TC\\BGI");
+
+	while(1){
+		for(x = xmin, y = ymin; x<xmax ; x+=10){
+			if(kbhit())	exit(1);
+			circle(x, y, r);
+			cleardevice();
+			delay(100);
+		}
+		for(x = xmax, y = ymin; y<ymax ; y+=10){
+			if(kbhit())	exit(1);
+			circle(x, y, r);
+			cleardevice();
+			delay(100);
+		}
+		for(x = xmax, y = ymax; x>xmax ; x-=10){
+			if(kbhit())	exit(1);
+			circle(x, y, r);
+			cleardevice();
+			delay(100);
+		}
+		for(x = xmin, y = ymax; y>ymax ; y-=10){
+			if(kbhit())	exit(1);
+			circle(x, y, r);
+			cleardevice();
+			delay(100);
+		}
+	}
+
+	getch();
+	closegraph();
+	return 1;
+
